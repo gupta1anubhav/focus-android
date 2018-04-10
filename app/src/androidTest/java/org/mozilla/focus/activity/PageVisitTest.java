@@ -33,7 +33,6 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.containsString;
 import static org.mozilla.focus.fragment.FirstrunFragment.FIRSTRUN_PREF;
-import static org.mozilla.focus.helpers.EspressoHelper.assertToolbarMatchesText;
 import static org.mozilla.focus.helpers.EspressoHelper.openMenu;
 
 // This test visits each page and checks whether some essential elements are being displayed
@@ -91,7 +90,8 @@ public class PageVisitTest {
         openMenu();
 
         clickMenuItem(R.id.help);
-        assertToolbarMatchesText(R.string.menu_help);
+
+        assertWebsiteUrlContains("what-firefox-focus-android");
 
         pressBack();
 
@@ -108,7 +108,9 @@ public class PageVisitTest {
                 .check(matches(isDisplayed()))
                 .perform(click());
 
-        assertToolbarMatchesText(R.string.menu_about);
+        assertWebsiteUrlContains("about:blank");
+
+       // assertToolbarMatchesText(R.string.menu_about);
 
         pressBack();
 
@@ -118,7 +120,8 @@ public class PageVisitTest {
                 .check(matches(isDisplayed()))
                 .perform(click());
 
-        assertToolbarMatchesText(R.string.your_rights);
+      //  assertToolbarMatchesText(R.string.your_rights);
+        assertWebsiteUrlContains("focus:rights");
     }
 
     private void clickMenuItem(@IdRes int id) {

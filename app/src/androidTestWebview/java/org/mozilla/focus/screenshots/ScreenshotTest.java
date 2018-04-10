@@ -35,7 +35,7 @@ abstract class ScreenshotTest {
         @Override
         protected void failed(Throwable e, Description description) {
             // On error take a screenshot so that we can debug it easily
-            Screengrab.screenshot("FAILURE-" + getScreenshotName(description));
+           // Screengrab.screenshot("FAILURE-" + getScreenshotName(description));
         }
 
         private String getScreenshotName(Description description) {
