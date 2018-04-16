@@ -34,10 +34,10 @@ def uploadApk(apk,key):
 
 # Get JSON data from taskcluster secrets service
 secrets = taskcluster.Secrets({'baseUrl': 'http://taskcluster/secrets/v1'})
-api_key = secrets.get('project/focus/nimbledroid')
+data = secrets.get('project/focus/nimbledroid')
 
 klar_file = {'apk': open('app/build/outputs/apk/klarGeckoArm/debug/app-klar-gecko-arm-debug.apk')}
 focus_file = {'apk': open('app/build/outputs/apk/focusWebviewUniversal/debug/app-focus-webview-universal-debug.apk')}
 
-uploadApk(klar_file, api_key)
-uploadApk(focus_file, api_key)
+uploadApk(klar_file, data['secret']['api_key'])
+uploadApk(focus_file, data['secret']['api_key'])
