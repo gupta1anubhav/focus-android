@@ -21,16 +21,8 @@ def uploadApk(apk,key):
 	response = requests.post(url, auth=(key, ''), headers=headers, files=apk, data=payload)
 
 	if response.status_code != 201:
-		print('Status:', response.status_code, 'Headers:', response.headers, 'Error Response:',response.json())
+		print('Error Response:',response.json())
 		exit()
-
-	# Print Response Details
-	print 'Response Status Code:', response.status_code
-
-	print ''
-	print('Reponse Payload:')
-	print json.dumps(response.json(), indent=4)
-
 
 # Get JSON data from taskcluster secrets service
 secrets = taskcluster.Secrets({'baseUrl': 'http://taskcluster/secrets/v1'})
